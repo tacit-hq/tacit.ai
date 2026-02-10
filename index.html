@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tacit</title>
     <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preload" as="image" href="sunlight-on-face.jpg">
     <style>
         @font-face {
             font-family: "adobe-caslon-pro";
@@ -122,13 +123,25 @@
     <script>
         let clicks = 0;
         let revealed = false;
+        const fullscreenImg = document.querySelector('.fullscreen');
+        let imageReady = false;
+        fullscreenImg.decode().then(() => { imageReady = true; }).catch(() => { imageReady = true; });
+
+        function doReveal() {
+            document.body.className = 'reveal';
+            setTimeout(typeTagline, 1400);
+        }
+
         document.body.addEventListener('click', () => {
             if (revealed) return;
             clicks++;
             if (clicks >= 3) {
                 revealed = true;
-                document.body.className = 'reveal';
-                setTimeout(typeTagline, 1400);
+                if (imageReady) {
+                    doReveal();
+                } else {
+                    fullscreenImg.decode().then(doReveal).catch(doReveal);
+                }
             } else {
                 document.body.classList.toggle('dark');
             }
