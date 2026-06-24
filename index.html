@@ -98,6 +98,33 @@
             overflow: hidden;
         }
 
+        .hiring {
+            position: fixed;
+            bottom: 40px;
+            right: 50px;
+            font-family: "adobe-caslon-pro", serif;
+            font-weight: 400;
+            font-size: 14px;
+            letter-spacing: 0.12em;
+            color: #000;
+            text-decoration: none;
+            z-index: 2;
+            transition: color 0.3s, opacity 0.3s;
+        }
+
+        .hiring:hover {
+            opacity: 0.6;
+        }
+
+        body.dark .hiring {
+            color: #fff;
+        }
+
+        body.reveal .hiring {
+            color: #fff;
+            bottom: 90px;
+        }
+
         @media (max-width: 600px) {
             .tagline {
                 white-space: normal;
@@ -113,6 +140,15 @@
                 left: 40px;
                 max-width: 100px;
             }
+            .hiring {
+                right: 20px;
+                bottom: 30px;
+                font-size: 13px;
+            }
+
+            body.reveal .hiring {
+                bottom: 80px;
+            }
         }
     </style>
 </head>
@@ -120,6 +156,7 @@
     <img class="logo" src="logo.png" alt="Tacit">
     <img class="fullscreen" src="sunlight-on-face.jpg" alt="Your Voice Unbound">
     <div class="tagline" aria-label="YOUR VOICE UNBOUND"></div>
+    <a class="hiring" href="https://jobs.ashbyhq.com/tacit" target="_blank">We're Hiring</a>
     <script>
         let clicks = 0;
         let revealed = false;
